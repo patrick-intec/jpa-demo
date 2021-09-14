@@ -4,11 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "beers")
+// @Entity
+// @Table(name = "beers")
+// DBMS >> databases >> tables
+// DBMS >> databases >> catalogues >> tables
 public class Beer {
     @Id
-    private int id;  // Col: id
+    private Integer id;  // Col: id
     private String name;  // col: name
     private int brewerId;
     private int categoryId;
@@ -16,6 +18,7 @@ public class Beer {
     private int stock;
     private float alcohol;
     private int version;
+
 
     public int getId() {
         return id;

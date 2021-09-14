@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class Main {
+public class MainIntro {
     public static void main(String[] args) {
     // 1. Security >> login information is plain text AND publicly available
     // 2. Information is hardcoded >> TC (Tight Coupling)
@@ -31,10 +31,15 @@ public class Main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("datasource");
         EntityManager em = emf.createEntityManager();
 
+        // Eager loading
         Beer beer = em.find(Beer.class, 4);
+        System.out.println("After find... before sys-out");
         System.out.println(beer.toString());
 
+        // Lazy loading
         Beer b2 = em.getReference(Beer.class, 4);
+        System.out.println("After getReference... before sys-out");
+        System.out.println(b2.toString());
 
 
         // Connection
