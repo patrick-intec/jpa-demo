@@ -1,10 +1,11 @@
 package be.infernalwhale;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+
+// 0. Entity must have an @Id (Primary key)
+// 1. Always have a no-arg constructor (public or protected)
+// 2. Create all getters & setters (public or protected)
 @Entity
 @Table(name = "cakes")
 public class Cake {
@@ -22,9 +23,13 @@ public class Cake {
     private int calories;
     private int howMuchChocolate;
 
-    // 0. Entity must have an @Id (Primary key)
-    // 1. Always have a no-arg constructor (public or protected)
-    // 2. Create all getters & setters (public or protected)
+    @OneToOne
+    private Icing icingOnTheCake;
+
+    // Client who bought the cake...
+    @ManyToOne
+    private Client client;
+
 
     public Integer getIdCake() {
         return idCake;
@@ -87,5 +92,39 @@ public class Cake {
     public Cake setHowMuchChocolate(int howMuchChocolate) {
         this.howMuchChocolate = howMuchChocolate;
         return this;
+    }
+
+    public Icing getIcingOnTheCake() {
+        return icingOnTheCake;
+    }
+
+    public Cake setIcingOnTheCake(Icing icingOnTheCake) {
+        this.icingOnTheCake = icingOnTheCake;
+        icingOnTheCake.setCake(this);
+
+        return this;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public Cake setClient(Client client) {
+        this.client = client;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Cake{" +
+                "idCake=" + idCake +
+                ", flavour='" + flavour + '\'' +
+                ", hasChocolate=" + hasChocolate +
+                ", price=" + price +
+                ", weight=" + weight +
+                ", calories=" + calories +
+                ", howMuchChocolate=" + howMuchChocolate +
+                ", icingOnTheCake=" + icingOnTheCake +
+                '}';
     }
 }
