@@ -26,6 +26,7 @@ public class MainRelationships {
         cake.setIcingOnTheCake(icing);
 
         Client client = new Client().setName("Yorick");
+        client.addCake(cake);
         cake.setClient(client);
 
         em.getTransaction().begin();

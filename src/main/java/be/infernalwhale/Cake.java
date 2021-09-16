@@ -1,6 +1,7 @@
 package be.infernalwhale;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 // 0. Entity must have an @Id (Primary key)
@@ -30,6 +31,8 @@ public class Cake {
     @ManyToOne
     private Client client;
 
+    @ManyToMany(mappedBy = "cakes")
+    private List<Ingredient> ingredientList;
 
     public Integer getIdCake() {
         return idCake;
